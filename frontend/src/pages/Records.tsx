@@ -123,13 +123,13 @@ const Records: React.FC = () => {
         new Date(r.date).toLocaleDateString('en-IN'),
         r.category,
         r.type.toUpperCase(),
-        `₹${Number(r.amount).toLocaleString('en-IN')}`,
+        Number(r.amount).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
         r.notes || '-'
       ]);
 
       autoTable(doc, {
         startY: 45,
-        head: [['Date', 'Category', 'Type', 'Amount', 'Notes']],
+        head: [['Date', 'Category', 'Type', 'Amount (INR)', 'Notes']],
         body: tableData,
         theme: 'striped',
         headStyles: { fillColor: [59, 130, 246] },
