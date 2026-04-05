@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Bell, Search, User as UserIcon, ExternalLink } from 'lucide-react';
+import { Bell, User as UserIcon, ExternalLink } from 'lucide-react';
 import { useAuthStore } from '../../store/auth.store';
 import { useNotifications } from '../../hooks/useNotifications';
 
