@@ -40,8 +40,14 @@ const authLimiter = rateLimit({
 });
 
 // Middleware
+app.set('trust proxy', 1);
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+  origin: ['https://finance-manager-frontend-azure.vercel.app', 'http://localhost:5173'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
 app.use(express.json());
 app.use(globalLimiter);
 
@@ -57,6 +63,15 @@ app.use('/api/notifications', notificationRoutes);
 // Health check
 app.get('/health', (_req, res) => {
   res.status(200).json({ status: 'OK', pool: pool.totalCount });
+});
+
+// Root route
+app.get('/', (_req, res) => {
+  res.status(200).json({ 
+    status: 'OK', 
+    message: 'Finance Manager API is running',
+    environment: process.env.NODE_ENV
+  });
 });
 
 // Global Error Handler
