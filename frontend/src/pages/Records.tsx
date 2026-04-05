@@ -389,7 +389,15 @@ const RecordModal: React.FC<ModalProps> = ({ onClose, onSubmit, record }) => {
     amount: record ? record.amount : 0,
     type: record ? record.type : 'expense',
     category: record ? record.category : '',
-    date: record ? record.date : new Date().toISOString().split('T')[0],
+    date: record 
+      ? (() => {
+          const d = new Date(record.date);
+          const year = d.getFullYear();
+          const month = String(d.getMonth() + 1).padStart(2, '0');
+          const day = String(d.getDate()).padStart(2, '0');
+          return `${year}-${month}-${day}`;
+        })()
+      : new Date().toISOString().split('T')[0],
     notes: record ? (record.notes || '') : ''
   });
   const [loading, setLoading] = useState(false);
