@@ -44,7 +44,7 @@ app.set('trust proxy', 1);
 app.use(helmet());
 app.use(cors({
   origin: ['https://finance-manager-frontend-azure.vercel.app', 'http://localhost:5173'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  methods: ['GET', 'POST', 'PUT','PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
